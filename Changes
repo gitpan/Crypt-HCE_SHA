@@ -13,3 +13,7 @@ Revision history for Perl extension Crypt::HCE_SHA.
 0.40 Tue Apr 06 1999
 	- updated man documentation
 	- updated to use Digest::SHA1 by Gisle Aas
+
+0.45 Tue Aug 17 1999
+	- bug fix on chaining key selection
+	- bug report submitted by Jake Angerman (Thanks Jake!)
