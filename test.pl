@@ -71,7 +71,7 @@ use IO::Select;
 use IO::Socket;
 use strict;
 use Carp;
-use Sys::Syslog;
+#use Sys::Syslog;
 #use HCE_SHA;
 
 my @response;
