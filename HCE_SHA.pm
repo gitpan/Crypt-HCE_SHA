@@ -2,7 +2,7 @@
 # Crypt::HCE_SHA
 # implements one way hash chaining encryption using SHA
 #
-# $Id$
+# $Id: HCE_SHA.pm,v 1.1 1999/04/07 04:12:32 eric Exp $
 #
 
 package Crypt::HCE_SHA;
@@ -10,7 +10,7 @@ package Crypt::HCE_SHA;
 use strict;
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
-use SHA;
+use Digest::SHA1;
 use MIME::Base64;
 use Carp;
 
@@ -24,7 +24,7 @@ require AutoLoader;
 @EXPORT = qw(
 	
 );
-$VERSION = '0.03';
+$VERSION = '0.40';
 
 sub new {
     my $class = shift;
@@ -46,7 +46,7 @@ sub _new_key {
     my $self = shift;
     my ($rnd) = @_;
  
-    my $context = new SHA;
+    my $context = new Digest::SHA1;
     $context->add($self->{SKEY}, $rnd);
     my $digest = $context->digest();
     my @e_block = unpack('C*', $digest);
@@ -136,8 +136,7 @@ Crypt::HCE_SHA - Perl extension implementing one way hash chaining encryption us
 
   $mime_crypted = $hce_sha->hce_block_encode_mime("Encrypt and Base64 this information");
   $info = $hce_sha->hce_block_decode_mime($mime_crypted);
-  
- 
+
 =head1 DESCRIPTION
 
 This module implements a chaining block cipher using a one way hash.  This method of encryption is the same that is used by radius (RFC2138) and is also described in Applied Cryptography.
@@ -150,7 +149,7 @@ An example client and server are packaged as modules with this module.  They are
 
 =head1 AUTHOR
 
-Eric Estabrooks, estabroo@ispn.com
+Eric Estabrooks, eric@urbanrage.com
 
 =head1 SEE ALSO
 
