@@ -17,3 +17,7 @@ Revision history for Perl extension Crypt::HCE_SHA.
 0.45 Tue Aug 17 1999
 	- bug fix on chaining key selection
 	- bug report submitted by Jake Angerman (Thanks Jake!)
+
+0.60 Fri Feb 18 2000
+	- fixed length issue caused by mime inserting returns
+	- updated Client.pm and Server.pm to reflect the changes

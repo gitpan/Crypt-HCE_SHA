@@ -2,7 +2,7 @@
 # Crypt::HCE_SHA
 # implements one way hash chaining encryption using SHA
 #
-# $Id: HCE_SHA.pm,v 1.2 1999/08/17 13:34:25 eric Exp $
+# $Id: HCE_SHA.pm,v 1.3 2000/02/19 03:47:11 eric Exp $
 #
 
 package Crypt::HCE_SHA;
@@ -24,7 +24,7 @@ require AutoLoader;
 @EXPORT = qw(
 	
 );
-$VERSION = '0.45';
+$VERSION = '0.60';
 
 sub new {
     my $class = shift;
@@ -102,7 +102,7 @@ sub hce_block_encode_mime {
     my ($data) = @_;
     
     my $new_data = $self->hce_block_encrypt($data);
-    my $encode = encode_base64($new_data);
+    my $encode = encode_base64($new_data, "");
     return $encode;
 }
  

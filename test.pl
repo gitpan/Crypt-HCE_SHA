@@ -18,6 +18,8 @@ print "ok 1\n";
 # (correspondingly "not ok 13") depending on the success of chunk 13
 # of the test code):
 
+$text = "This is an example of some text that is long enough to verify that the bug was fixed.  So if you see this message in its entirety then I guess it worked";
+
 $hce_sha = Crypt::HCE_SHA->new("SharedSecret", "Random01,39j309ad");
   
 $crypted = $hce_sha->hce_block_encrypt("Encrypt this information");
@@ -53,9 +55,9 @@ if ($pid != 0) {
 } else {
     sleep 3;
     $client = Client->new(Server => localhost, Port => 5050, SKey => "SharedSecret");
-    $client->send("Encrypt this information");
+    $client->send($text);
     @info_back = $client->recv();
-    if ($info_back[0] eq "Encrypt this information") {
+    if ($info_back[0] eq $text) {
 	print "ok 4\n";
     } else {
 	print "not ok 4\n";
@@ -156,10 +158,10 @@ sub send {
 	    print "Server encode: $item\n";
 	    $enc_item = $self->{'HCE'}->hce_block_encode_mime($item);
 	    print "Server sending: $enc_item\n";
-	    print { $self->{'Connect'} } "$enc_item";
+	    print { $self->{'Connect'} } "$enc_item\n";
 	}
 	$enc_item = $self->{'HCE'}->hce_block_encode_mime("+END_OF_LIST");
-	print { $self->{'Connect'} } "$enc_item";
+	print { $self->{'Connect'} } "$enc_item\n";
     } else {
 	foreach $item (@items) {
 #	    syslog('debug','Server sending: %s',$item);
@@ -282,10 +284,10 @@ sub send {
 #	    syslog('debug','Client encode: %s',$item);
 	    $enc_item = $self->{'HCE'}->hce_block_encode_mime($item);
 #	    syslog('debug','Client sending: %s', $enc_item);
-	    print { $self->{'Socket'} } "$enc_item";
+	    print { $self->{'Socket'} } "$enc_item\n";
 	}
 	$enc_item = $self->{'HCE'}->hce_block_encode_mime("+END_OF_LIST");
-	print { $self->{'Socket'} } "$enc_item";
+	print { $self->{'Socket'} } "$enc_item\n";
     } else {
 	foreach $item (@items) {
 #	    syslog('debug','Client sending: %s',$item);
