@@ -24,3 +24,6 @@ Revision history for Perl extension Crypt::HCE_SHA.
 
 0.65 Fri Mar 26 2004
 	- removed syslog from test.pl to support ActiveState
+
+0.70 Fri Mar 26 2004
+	- removed the other syslogs from test.pl
