@@ -3,3 +3,9 @@ Revision history for Perl extension Crypt::HCE_SHA.
 0.01  Wed Oct 14 16:23:57 1998
 	- original version; created by h2xs 1.18
 
+
+0.02
+	- implementation
+
+0.03  Fri Oct 16 14:41:33 1998
+	- moved example modules to the examples directory
